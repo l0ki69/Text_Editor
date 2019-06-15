@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "file_manager.h"
+#include "fontsetup.h"
 
 
 namespace Ui {
@@ -22,11 +23,20 @@ private slots:
   void createFileSlot();
   void openFileSlot();
   void saveFileSlot();
- // void saveNowFileSlot();
+  void saveNowFileSlot();
+
+  void changeFontStyleSlot();
+  void changeFontColorSlot();
+  void changeFontSizeSlot();
+  void changeBackgroundColorSlot();
+  void changeBackgroundTextColorSlot();
+
+  void changeSelectSlot();
 
 private:
     Ui::MainWindow *ui;
     File_Manager* pFileManager;
+    FontSetup* pFontSetup;
 };
 
 #endif // MAINWINDOW_H

@@ -7,6 +7,7 @@
 #include <qfiledialog.h>
 #include <QColorDialog>
 #include <QInputDialog>
+#include <QTextCodec>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,19 +15,31 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     pFileManager = new File_Manager();
-//    pFontSetup = new FontSetup(ui->textEdit);
-//    pCompiler = new Compiler();
+    pFontSetup = new FontSetup(ui->textEdit);
 
 
     connect(ui->createFile, &QAction::triggered, this, &MainWindow::createFileSlot);
     connect(ui->openFile, &QAction::triggered, this, &MainWindow::openFileSlot);
     connect(ui->saveFile, &QAction::triggered, this, &MainWindow::saveFileSlot);
-    //connect(ui->saveNowFile, &QAction::triggered, this, &MainWindow::saveNowFileSlot);
+
+    connect(ui->changeFontSize, &QAction::triggered, this, &MainWindow::changeFontSizeSlot);
+    connect(ui->changeFontStyle, &QAction::triggered, this, &MainWindow::changeFontStyleSlot);
+    connect(ui->changeFontColor, &QAction::triggered, this, &MainWindow::changeFontColorSlot);
+    connect(ui->changeBackgroundColor, &QAction::triggered, this, &MainWindow::changeBackgroundColorSlot);
+    connect(ui->changeBackgroundTextColor, &QAction::triggered, this, &MainWindow::changeBackgroundTextColorSlot);
+    connect(ui->changeSelect, &QAction::triggered, this, &MainWindow::changeSelectSlot);
+
+
+    pFontSetup->setFontStyle(defaultFontStyle);
+    pFontSetup->setFontSize(defaultFontSize);
+    pFontSetup->setSelectColor(defaultSelectColor, defaultBackgroundColor);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete pFileManager;
+    delete pFontSetup;
 }
 
 void MainWindow::openFileSlot()
@@ -42,19 +55,20 @@ void MainWindow::openFileSlot()
 
 void MainWindow::createFileSlot()
 {
-  QString path = QFileDialog::getSaveFileName(this, "Создать новый файл", "sampleText");
+  QString path = QFileDialog::getSaveFileName(this, "Создать новый файл", "Newfile");
   pFileManager->currentPath = path;
   pFileManager->createFile(path);
 }
 
-/*void MainWindow::saveNowFileSlot() {
+void MainWindow::saveNowFileSlot() {
   if(pFileManager->currentPath != "")
   {
       QString text = ui->textEdit->toPlainText();
       pFileManager->saveFile(pFileManager->currentPath,text);
   }
 }
-*/
+
+
 void MainWindow::saveFileSlot()
 {
     QString path = QFileDialog::getSaveFileName(this, "Сохранить файл", pFileManager->fileName, "*.txt  *.cpp *.c *.h");
@@ -63,4 +77,35 @@ void MainWindow::saveFileSlot()
         QString text = ui->textEdit->toPlainText();
         pFileManager->saveFile(path,text);
     }
+}
+
+void MainWindow::changeFontSizeSlot()
+{
+    pFontSetup->setFontSize(QInputDialog::getInt(this, "Изменить размер текста","Давай меняй, чего ждёшь", pFontSetup->fontSize, 1, 100));
+}
+
+void MainWindow::changeFontColorSlot()
+{
+    pFontSetup->setFontColor(QColorDialog::getColor(pFontSetup->fontColor,this));
+}
+
+void MainWindow::changeFontStyleSlot()
+{
+    pFontSetup->setFontStyle(QFontDialog::getFont(nullptr, pFontSetup->fontStyle, this));
+}
+
+void MainWindow::changeBackgroundColorSlot()
+{
+    pFontSetup->setBackgroundColor(QColorDialog::getColor(pFontSetup->backgroundColor,this));
+}
+
+void MainWindow::changeBackgroundTextColorSlot()
+{
+    pFontSetup->setBackgroundTextColor(QColorDialog::getColor(pFontSetup->backgroundTextColor,this));
+}
+
+
+void MainWindow::changeSelectSlot()
+{
+    pFontSetup->setSelectColor(QColorDialog::getColor(pFontSetup->selectColor,this), defaultBackgroundColor);
 }

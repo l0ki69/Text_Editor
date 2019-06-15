@@ -31,13 +31,38 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Файлы</string>
     </property>
-    <addaction name="createFile"/>
-    <addaction name="saveFile"/>
     <addaction name="openFile"/>
+    <addaction name="createFile"/>
+    <addaction name="separator"/>
+    <addaction name="saveNowFile"/>
+    <addaction name="saveFile"/>
+   </widget>
+   <widget class="QMenu" name="menuFont">
+    <property name="title">
+     <string>Шрифт</string>
+    </property>
+    <addaction name="changeFontSize"/>
+    <addaction name="changeFontStyle"/>
+    <addaction name="separator"/>
+    <addaction name="changeFontColor"/>
+    <addaction name="changeBackgroundColor"/>
+    <addaction name="changeBackgroundTextColor"/>
+    <addaction name="separator"/>
+    <addaction name="changeSelect"/>
+   </widget>
+   <widget class="QMenu" name="menuKod">
+    <property name="title">
+     <string>Кодировки</string>
+    </property>
+    <addaction name="action_UTF_8"/>
+    <addaction name="action_KOI8_R"/>
+    <addaction name="action_Windows_1251"/>
    </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuFont"/>
+   <addaction name="menuKod"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -50,17 +75,67 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="createFile">
    <property name="text">
-    <string>Creat File</string>
+    <string>Создать файл         Ctrl+N</string>
    </property>
   </action>
-  <action name="saveFile">
+  <action name="saveNowFile">
    <property name="text">
-    <string>Save File</string>
+    <string>Сохранить               Ctrl+S</string>
    </property>
   </action>
   <action name="openFile">
    <property name="text">
-    <string>Open File</string>
+    <string>Открыть файл        Ctrl+O</string>
+   </property>
+  </action>
+  <action name="changeFontSize">
+   <property name="text">
+    <string>Изменить размер текста</string>
+   </property>
+  </action>
+  <action name="changeFontStyle">
+   <property name="text">
+    <string>Изменить шрифт</string>
+   </property>
+  </action>
+  <action name="changeFontColor">
+   <property name="text">
+    <string>Изменить цвет текста</string>
+   </property>
+  </action>
+  <action name="changeBackgroundColor">
+   <property name="text">
+    <string>Изменить цвет фона</string>
+   </property>
+  </action>
+  <action name="changeBackgroundTextColor">
+   <property name="text">
+    <string>Изменить цвет закраски текста</string>
+   </property>
+  </action>
+  <action name="changeSelect">
+   <property name="text">
+    <string>Изменить цвет выделения текста</string>
+   </property>
+  </action>
+  <action name="action_UTF_8">
+   <property name="text">
+    <string>Кодировка UTF-8</string>
+   </property>
+  </action>
+  <action name="action_KOI8_R">
+   <property name="text">
+    <string>Кодировка KOI8-R</string>
+   </property>
+  </action>
+  <action name="action_Windows_1251">
+   <property name="text">
+    <string>Кодировка в Windows-1251</string>
+   </property>
+  </action>
+  <action name="saveFile">
+   <property name="text">
+    <string>Сохранить как        Ctrl+Shift+S</string>
    </property>
   </action>
  </widget>
