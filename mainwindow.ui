@@ -75,67 +75,106 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="createFile">
    <property name="text">
-    <string>Создать файл         Ctrl+N</string>
+    <string>Создать файл</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="saveNowFile">
    <property name="text">
-    <string>Сохранить               Ctrl+S</string>
+    <string>Сохранить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="openFile">
    <property name="text">
-    <string>Открыть файл        Ctrl+O</string>
+    <string>Открыть файл</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="changeFontSize">
    <property name="text">
     <string>Изменить размер текста</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
   </action>
   <action name="changeFontStyle">
    <property name="text">
     <string>Изменить шрифт</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
    </property>
   </action>
   <action name="changeFontColor">
    <property name="text">
     <string>Изменить цвет текста</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+3</string>
+   </property>
   </action>
   <action name="changeBackgroundColor">
    <property name="text">
     <string>Изменить цвет фона</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
    </property>
   </action>
   <action name="changeBackgroundTextColor">
    <property name="text">
     <string>Изменить цвет закраски текста</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+5</string>
+   </property>
   </action>
   <action name="changeSelect">
    <property name="text">
     <string>Изменить цвет выделения текста</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+6</string>
    </property>
   </action>
   <action name="action_UTF_8">
    <property name="text">
     <string>Кодировка UTF-8</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
   </action>
   <action name="action_KOI8_R">
    <property name="text">
     <string>Кодировка KOI8-R</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
    </property>
   </action>
   <action name="action_Windows_1251">
    <property name="text">
     <string>Кодировка в Windows-1251</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
   </action>
   <action name="saveFile">
    <property name="text">
-    <string>Сохранить как        Ctrl+Shift+S</string>
+    <string>Сохранить как</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
  </widget>
