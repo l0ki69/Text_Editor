@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
+#include <stdlib.h>
+#include <iostream>
 #include <qstring.h>
 #include <QContextMenuEvent>
 #include <qfiledialog.h>
@@ -21,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->createFile, &QAction::triggered, this, &MainWindow::createFileSlot);
     connect(ui->openFile, &QAction::triggered, this, &MainWindow::openFileSlot);
     connect(ui->saveFile, &QAction::triggered, this, &MainWindow::saveFileSlot);
+    connect(ui->saveNowFile, &QAction::triggered, this, &MainWindow::saveNowFileSlot);
+
 
     connect(ui->changeFontSize, &QAction::triggered, this, &MainWindow::changeFontSizeSlot);
     connect(ui->changeFontStyle, &QAction::triggered, this, &MainWindow::changeFontStyleSlot);
@@ -77,6 +80,7 @@ void MainWindow::saveFileSlot()
     QString path = QFileDialog::getSaveFileName(this, "Сохранить файл", pFileManager->fileName, "*.txt  *.cpp *.c *.h");
     if(path != "")
     {
+        pFileManager->currentPath = path;
         QString text = ui->textEdit->toPlainText();
         pFileManager->saveFile(path,text);
     }
