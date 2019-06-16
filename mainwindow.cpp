@@ -29,6 +29,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->changeBackgroundTextColor, &QAction::triggered, this, &MainWindow::changeBackgroundTextColorSlot);
     connect(ui->changeSelect, &QAction::triggered, this, &MainWindow::changeSelectSlot);
 
+    connect(ui->action_UTF_8, &QAction::triggered, this, &MainWindow::codecUTF8Slot);
+    connect(ui->action_KOI8_R, &QAction::triggered, this, &MainWindow::codecKOI8Slot);
+    connect(ui->action_Windows_1251, &QAction::triggered, this, &MainWindow::codecWindows1251Slot);
 
     pFontSetup->setFontStyle(defaultFontStyle);
     pFontSetup->setFontSize(defaultFontSize);
@@ -81,7 +84,7 @@ void MainWindow::saveFileSlot()
 
 void MainWindow::changeFontSizeSlot()
 {
-    pFontSetup->setFontSize(QInputDialog::getInt(this, "Изменить размер текста","Давай меняй, чего ждёшь", pFontSetup->fontSize, 1, 100));
+    pFontSetup->setFontSize(QInputDialog::getInt(this, "Изменить размер текста","Лучше не меняй", pFontSetup->fontSize, 1, 100));
 }
 
 void MainWindow::changeFontColorSlot()
@@ -108,4 +111,40 @@ void MainWindow::changeBackgroundTextColorSlot()
 void MainWindow::changeSelectSlot()
 {
     pFontSetup->setSelectColor(QColorDialog::getColor(pFontSetup->selectColor,this), defaultBackgroundColor);
+}
+
+void MainWindow::codecUTF8Slot()
+{
+  QString text = ui->textEdit->toPlainText();
+  QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+  QByteArray byteArray;
+  QDataStream in(&byteArray, QIODevice::ReadOnly);
+  in >> byteArray;
+  byteArray = codec->fromUnicode(text);
+  text = byteArray;
+  ui->textEdit->setPlainText(text);
+}
+
+void MainWindow::codecKOI8Slot()
+{
+  QString text = ui->textEdit->toPlainText();
+  QTextCodec *codec = QTextCodec::codecForName("KOI8-R");
+  QByteArray byteArray;
+  QDataStream in(&byteArray, QIODevice::ReadOnly);
+  in >> byteArray;
+  byteArray = codec->fromUnicode(text);
+  text = byteArray;
+  ui->textEdit->setPlainText(text);
+}
+
+void MainWindow::codecWindows1251Slot()
+{
+  QString text = ui->textEdit->toPlainText();
+  QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
+  QByteArray byteArray;
+  QDataStream in(&byteArray, QIODevice::ReadOnly);
+  in >> byteArray;
+  byteArray = codec->fromUnicode(text);
+  text = byteArray;
+  ui->textEdit->setPlainText(text);
 }

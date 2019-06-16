@@ -33,6 +33,10 @@ private slots:
 
   void changeSelectSlot();
 
+  void codecUTF8Slot();
+  void codecKOI8Slot();
+  void codecWindows1251Slot();
+
 private:
     Ui::MainWindow *ui;
     File_Manager* pFileManager;
